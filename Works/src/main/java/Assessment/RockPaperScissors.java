@@ -11,13 +11,7 @@ public class RockPaperScissors {
     {   
         //useful objects we will use throughout 
         Random rng = new Random();
-        Scanner scan = new Scanner(System.in);
-        for (int i=0; i<= 10; i++) {
-    int randomNumber = rng.nextInt(3)+1;
-    System.out.println(randomNumber);
-          }
-        
-        
+        Scanner scan = new Scanner(System.in);      
         
         boolean playagain = true;//to see if person wants to play again
         
