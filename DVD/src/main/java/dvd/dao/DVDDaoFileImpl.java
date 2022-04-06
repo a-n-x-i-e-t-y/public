@@ -22,6 +22,7 @@ public class DVDDaoFileImpl implements DVDDao {
         DVDObj tempdvd = dvdCollection.put(title, dvd);
         return tempdvd;
     }
+    
 
 
     @Override
@@ -30,6 +31,8 @@ public class DVDDaoFileImpl implements DVDDao {
         dvdCollection.remove(title);
         return tempdvd;
     }
+    
+    
 
     @Override
     public DVDObj editDVD(String title, DVDObj dvd) {
@@ -41,8 +44,9 @@ public class DVDDaoFileImpl implements DVDDao {
         return tempdvd;
         
         
-        
     }
+    
+    
 
     @Override
     public Set<String> getAllDVDNames() {
@@ -52,14 +56,23 @@ public class DVDDaoFileImpl implements DVDDao {
         
     }
 
+    
+    
+    
     @Override
     public DVDObj getDVDAtt(String title) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        
+       DVDObj tempdvd = dvdCollection.get(title);
+    
+       return tempdvd;    
     }
 
     @Override
     public DVDObj searchDVD(String title) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+       DVDObj tempdvd = dvdCollection.get(title);
+    
+       return tempdvd;   
+        
     }
 
     @Override
