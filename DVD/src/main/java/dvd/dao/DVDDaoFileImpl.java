@@ -121,7 +121,8 @@ public class DVDDaoFileImpl implements DVDDao {
 
         try {//to write to file
             FileWriter myWriter = new FileWriter("collection.txt");
-            myWriter.write("Files in Java might be tricky, but it is fun enough!");
+            myWriter.write(DVDObj.getTitle()+"::" + DVDObj.getReleaseDate()+ "::" + DVDObj.getRating()+ "::" 
+                    + DVDObj.getDirectors()+ "::" + DVDObj.getStudio()+ "::" + DVDObj.getNote()););
             myWriter.close();
             System.out.println("Successfully wrote to the file.");
         } catch (IOException e) {
@@ -129,9 +130,6 @@ public class DVDDaoFileImpl implements DVDDao {
             e.printStackTrace();
         }
         
-        for 
-            String lineWrite = (DvDObj.getTitle()+"::" + DVDObj.getReleaseDate()+ "::" + DVDObj.getRating()+ "::" 
-                    + DVDObj.getDirectors()+ "::" + DVDObj.getStudio()+ "::" + DVDObj.getNote());
  
     }
 
