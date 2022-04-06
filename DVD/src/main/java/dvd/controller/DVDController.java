@@ -30,7 +30,7 @@ public class DVDController {
             io.print("4. List all DVDs");
             io.print("5. Display chosen DVD");
             io.print("6. Search for a DVD");
-            io.print("7. Load a DVD");
+            io.print("7. Load a DVD Library");
             io.print("8. Save DVD library");
             io.print("9. Edit multiple DVDS");
             io.print("10. Exit");
