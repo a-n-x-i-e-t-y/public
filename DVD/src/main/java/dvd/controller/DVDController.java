@@ -90,6 +90,7 @@ public class DVDController {
         String rating = io.readString("Please enter rating");
         String directors = io.readString("Please enter director");
         String studio = io.readString("Please enter studio");
+        String comment = io.readString("Please enter a commnet");
 
         DVDObj newDvd = new DVDObj();
 
@@ -98,9 +99,17 @@ public class DVDController {
         newDvd.setRating(rating);
         newDvd.setDirectors(directors);
         newDvd.setStudio(studio);
+        newDvd.setNote(comment);
 
         dao.addDVD(title, newDvd);
     }
+    
+    
+    
+    
+    
+    
+    //methods begin here
 
     private void removeDvd() {
         String title = io.readString("Please enter DVD title");
@@ -160,7 +169,7 @@ public class DVDController {
     }
 
     private void saveDVD() {
-        io.print("You saved the list to a text file");
+        io.print("You saved the collection to a text file");
         dao.saveLibrary();
         //saveLibrary();
     }
