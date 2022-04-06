@@ -34,6 +34,7 @@ public class DVDController {
             io.print("8. Save DVD library");
             io.print("9. Edit multiple DVDS");
             io.print("10. Exit");
+            io.print("============================");
 
             menuSelection = io.readInt("Please select from the"
                     + " above choices.");
