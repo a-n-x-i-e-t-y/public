@@ -55,7 +55,7 @@ public class DVDController {
                     listCollection();
                     break;
                 case 5:
-                    //displayDvd();
+                    displayDVD();
                     break;
                 case 6:
                     //searchDVD();
@@ -86,6 +86,7 @@ public class DVDController {
         String rating = io.readString("Please enter rating");
         String directors = io.readString("Please enter director");
         String studio = io.readString("Please enter studio");
+        String notes = io.readString("Please enter any notes");
 
         DVDObj newDvd = new DVDObj();
 
@@ -94,6 +95,7 @@ public class DVDController {
         newDvd.setRating(rating);
         newDvd.setDirectors(directors);
         newDvd.setStudio(studio);
+        newDvd.setNote(notes);
 
         dao.addDVD(title, newDvd);
     }
@@ -113,19 +115,12 @@ public class DVDController {
 
         String title = io.readString("Please enter DVD title");
         DVDObj tempDvd = dao.getDVDAtt(title);
-        //io.print(tempDvd.getRelease());
-        
-//        if (dvd != null) {
-//            io.print(dvd.getTitle());
-//            io.print(dvd.getReleaseDate());
-//            io.print(dvd.getRating());
-//            io.print(dvd.getDirectors());
-//            io.print(dvd.getStudio());
-//            io.print(dvd.getNote());
-//            io.print("");
-//        } else {
-//            io.print("That DVD doesnt exist.");
-//        }
+        io.print("Release Date: " + tempDvd.getReleaseDate());
+        io.print("Rating: " + tempDvd.getRating());
+        io.print("Director: " + tempDvd.getDirectors());
+        io.print("Studio: " + tempDvd.getStudio());
+        io.print("Notes: " + tempDvd.getReleaseDate());
+   
 
     }
 
