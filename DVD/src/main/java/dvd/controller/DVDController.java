@@ -133,10 +133,14 @@ public class DVDController {
     }
 
     private void loadDVD() {
-        //loadLibrary();
+        io.print("You will load the collection from the file");
+        dao.loadLibrary();
+        
     }
 
     private void saveDVD() {
+        io.print("You saved the list to a text file");
+        dao.saveLibrary();
         //saveLibrary();
     }
 
