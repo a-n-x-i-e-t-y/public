@@ -155,7 +155,7 @@ public class DVDController {
     }
 
     private void saveDVD() {
-        io.print("You saved the list to a text file");
+        io.print("You saved the collection to a text file");
         dao.saveLibrary();
         //saveLibrary();
     }
