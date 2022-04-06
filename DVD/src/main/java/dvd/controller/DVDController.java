@@ -73,6 +73,18 @@ public class DVDController {
         io.print("GOOD BYE");
     }
 
+    private void addDvd(){
+    String title = io.readString("Please enter DVD title:");
+    String releaseDate;
+    String rating;
+    String directors;
+    String studio;
+    DVDObj newDvd = new DVDObj();
+    ;
+    newDvd.setReleaseDate(releaseDate);
+    
+    }
+    
     private void DisplayDvd(DVDObj dvd) {
         if (dvd != null) {
             io.print(DvDObj.getTitle());
