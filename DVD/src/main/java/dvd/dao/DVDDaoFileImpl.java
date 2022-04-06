@@ -108,7 +108,11 @@ public class DVDDaoFileImpl implements DVDDao {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
-
+        
+        for 
+            String lineWrite = (DvDObj.getTitle()+"::" + DVDObj.getReleaseDate()+ "::" + DVDObj.getRating()+ "::" 
+                    + DVDObj.getDirectors()+ "::" + DVDObj.getStudio()+ "::" + DVDObj.getNote());
+ 
     }
 
 }
