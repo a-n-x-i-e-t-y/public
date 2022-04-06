@@ -4,6 +4,8 @@ import DVDcollection.ui.UserIO;
 import DVDcollection.ui.UserIOConsoleImpl;
 import dvd.dao.DVDDaoFileImpl;
 import dvd.dto.DVDObj;
+import java.util.ArrayList;
+import java.util.List;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -16,12 +18,11 @@ public class DVDController {
 
     //Testing push command
     //This is a second test push
-    
     public void run() {
         boolean keepGoing = true;
         int menuSelection = 0;
         while (keepGoing) {
-         //this is a comment 
+            //this is a comment 
             io.print("Main Menu");
             io.print("1. Add a DVD");
             io.print("2. Remove a DVD");
@@ -75,24 +76,34 @@ public class DVDController {
         }
         io.print("GOOD BYE");
     }
-    
-    private void addDvd (){
-    String title = io.readString("Please enter DVD title");
-    String releaseDate = io.readString("Please enter DVD release date");
-    String rating = io.readString("Please enter rating");
-    String directors = io.readString("Please enter director");
-    String studio = io.readString("Please enter studio");
-    
-    DVDObj newDvd = new DVDObj();
-    
-    newDvd.setTitle(title);
-    newDvd.setReleaseDate(releaseDate);
-    newDvd.setRating(rating);
-    newDvd.setDirectors(directors);
-    newDvd.setStudio(studio);
-    
-    dao.addDVD(title, newDvd);
-    
+
+    private void addDvd() {
+        String title = io.readString("Please enter DVD title");
+        String releaseDate = io.readString("Please enter DVD release date");
+        String rating = io.readString("Please enter rating");
+        String directors = io.readString("Please enter director");
+        String studio = io.readString("Please enter studio");
+
+        DVDObj newDvd = new DVDObj();
+
+        newDvd.setTitle(title);
+        newDvd.setReleaseDate(releaseDate);
+        newDvd.setRating(rating);
+        newDvd.setDirectors(directors);
+        newDvd.setStudio(studio);
+
+        dao.addDVD(title, newDvd);
+    }
+
+    private void removeDvd() {
+        String title = io.readString("Please enter DVD title");
+        dao.removeDVD(title);
+    }
+
+    private void listCollection() {
+        List<String> collection = new ArrayList<>();
+        collection.addAll(dao.getAllDVDNames());
+        System.out.println(collection);
     }
 
     private void displayDVD(DVDObj dvd) {
