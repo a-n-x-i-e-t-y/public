@@ -25,7 +25,7 @@ public class DVDView {
 
         return io.readInt("Please select from the above choices."); //1-5
     }
-
+/*
     public Student getNewStudentInfo() {
         String studentId = io.readString("Please enter Student ID");
         String firstName = io.readString("Please enter First Name");
@@ -102,8 +102,8 @@ public class DVDView {
     public void displayUnknownCommandBanner() {
         io.print("Unknown Command!!!");
     }
-
-    public ClassRosterView(UserIO io) {
+*/
+    public DVDView(UserIO io) {
         this.io = io;
     }
 }
