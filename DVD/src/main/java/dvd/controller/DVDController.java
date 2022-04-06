@@ -2,6 +2,7 @@ package dvd.controller;
 
 import DVDcollection.ui.UserIO;
 import DVDcollection.ui.UserIOConsoleImpl;
+import dvd.dao.DVDDaoFileImpl;
 import dvd.dto.DVDObj;
 
 /*
@@ -11,6 +12,7 @@ import dvd.dto.DVDObj;
 public class DVDController {
 
     private UserIO io = new UserIOConsoleImpl();
+    private DVDDaoFileImpl dao = new DVDDaoFileImpl();
 
     //Testing push command
     //This is a second test push
@@ -72,6 +74,25 @@ public class DVDController {
 
         }
         io.print("GOOD BYE");
+    }
+    
+    private void addDvd (){
+    String title = io.readString("Please enter DVD title");
+    String releaseDate = io.readString("Please enter DVD release date");
+    String rating = io.readString("Please enter rating");
+    String directors = io.readString("Please enter director");
+    String studio = io.readString("Please enter studio");
+    
+    DVDObj newDvd = new DVDObj();
+    
+    newDvd.setTitle(title);
+    newDvd.setReleaseDate(releaseDate);
+    newDvd.setRating(rating);
+    newDvd.setDirectors(directors);
+    newDvd.setStudio(studio);
+    
+    dao.addDVD(title, newDvd);
+    
     }
 
     private void displayDVD(DVDObj dvd) {
