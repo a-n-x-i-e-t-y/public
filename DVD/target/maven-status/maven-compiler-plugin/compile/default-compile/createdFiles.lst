@@ -1,7 +1,4 @@
-dvd\controller\DVDController.class
-dvd\dao\DVDDaoFileImpl.class
 dvd\dto\DVDObj.class
-DVDcollection\ui\DVDView.class
 DVDcollection\ui\UserIOConsoleImpl.class
 DVDcollection\ui\UserIO.class
 dvd\dao\DVDDao.class

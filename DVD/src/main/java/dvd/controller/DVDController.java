@@ -58,13 +58,13 @@ public class DVDController {
                     displayDVD();
                     break;
                 case 6:
-                    //searchDVD();
+                    searchDVD();
                     break;
                 case 7:
-                    //loadDVD();
+                    loadDVD();
                     break;
                 case 8:
-                    //saveDVD();
+                    saveDVD();
                     break;
                 case 9:
                     io.print("PLACEHOLDER");
@@ -124,8 +124,9 @@ public class DVDController {
 
     }
 
-    private void searchDVD(String title) {
-
+    private void searchDVD() {
+        String title = io.readString("Please enter DVD title");
+        
         if (dao.getAllDVDNames().contains(title)) {
             io.print("we have " + title);
         } else {
@@ -144,10 +145,14 @@ public class DVDController {
 //    }
 
     private void loadDVD() {
-        //loadLibrary();
+        io.print("You will load the collection from the file");
+        dao.loadLibrary();
+        
     }
 
     private void saveDVD() {
+        io.print("You saved the list to a text file");
+        dao.saveLibrary();
         //saveLibrary();
     }
 
