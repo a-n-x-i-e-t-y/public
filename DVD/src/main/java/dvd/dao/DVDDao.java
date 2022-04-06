@@ -25,9 +25,9 @@ public interface DVDDao {
     
     DVDObj searchDVD (String title);
     
-    DVDObj loadDVD ();
+    void loadLibrary();
     
-    DVDObj saveDVD ();
+    void saveLibrary ();
     
     //DvdObj editMultiple();
     
