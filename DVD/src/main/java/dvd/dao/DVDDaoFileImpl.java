@@ -19,8 +19,10 @@ public class DVDDaoFileImpl implements DVDDao {
     
     @Override
     public DVDObj addDVD(String title, DVDObj dvd) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        DVDObj prevDvd = dvdCollection.put(title, dvd);
+        return prevDvd;
     }
+
 
     @Override
     public DVDObj removeDVD(String title) {
