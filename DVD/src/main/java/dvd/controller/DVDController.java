@@ -124,7 +124,7 @@ public class DVDController {
 
     private void searchDVD(String title) {
 
-        if (getAllDVDNames().contains(title)) {
+        if (dao.getAllDVDNames().contains(title)) {
             io.print("we have " + title);
         } else {
             io.print("We dont have that dvd.");
