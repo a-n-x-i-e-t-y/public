@@ -6,8 +6,8 @@ package dvd.dao;
 
 import dvd.dto.DVDObj;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  *
@@ -19,24 +19,37 @@ public class DVDDaoFileImpl implements DVDDao {
     
     @Override
     public DVDObj addDVD(String title, DVDObj dvd) {
-        DVDObj prevDvd = dvdCollection.put(title, dvd);
-        return prevDvd;
+        DVDObj tempdvd = dvdCollection.put(title, dvd);
+        return tempdvd;
     }
 
 
     @Override
     public DVDObj removeDVD(String title) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        DVDObj tempdvd = dvdCollection.get(title);
+        dvdCollection.remove(title);
+        return tempdvd;
     }
 
     @Override
-    public DVDObj editDVD(String title) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public DVDObj editDVD(String title, DVDObj dvd) {
+        
+        dvdCollection.put(title, dvd);
+        
+        DVDObj tempdvd = dvdCollection.get(title);
+        
+        return tempdvd;
+        
+        
+        
     }
 
     @Override
-    public List<DVDObj> getAllDVDObjs() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Set<String> getAllDVDNames() {
+        
+        Set<String> dvdtitles = dvdCollection.keySet();
+        return dvdtitles;
+        
     }
 
     @Override

@@ -5,7 +5,7 @@
 package dvd.dao;
 
 import dvd.dto.DVDObj;
-import java.util.List;
+import java.util.Set;
 
 /**
  *
@@ -17,9 +17,9 @@ public interface DVDDao {
 
     DVDObj removeDVD(String title);
     
-    DVDObj editDVD (String title);
+    DVDObj editDVD (String title, DVDObj dvd);
     
-    List<DVDObj> getAllDVDObjs();
+    Set<String> getAllDVDNames();
 
     DVDObj getDVDAtt(String title);
     
