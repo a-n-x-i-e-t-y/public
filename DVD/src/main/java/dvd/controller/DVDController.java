@@ -41,15 +41,18 @@ public class DVDController {
             switch (menuSelection) {
                 case 1:
                     io.print("ADD DVD");
+                    addDvd();
                     break;
                 case 2:
                     io.print("REMOVE DVD");
+                    removeDvd();
                     break;
                 case 3:
                     io.print("EDIT DVD");
                     break;
                 case 4:
                     io.print("LIST DVD");
+                    listCollection();
                     break;
                 case 5:
                     //displayDvd();
@@ -106,19 +109,23 @@ public class DVDController {
         System.out.println(collection);
     }
 
-    private void displayDVD(DVDObj dvd) {
+    private void displayDVD() {
 
-        if (dvd != null) {
-            io.print(dvd.getTitle());
-            io.print(dvd.getReleaseDate());
-            io.print(dvd.getRating());
-            io.print(dvd.getDirectors());
-            io.print(dvd.getStudio());
-            io.print(dvd.getNote());
-            io.print("");
-        } else {
-            io.print("That DVD doesnt exist.");
-        }
+        String title = io.readString("Please enter DVD title");
+        DVDObj tempDvd = dao.getDVDAtt(title);
+        //io.print(tempDvd.getRelease());
+        
+//        if (dvd != null) {
+//            io.print(dvd.getTitle());
+//            io.print(dvd.getReleaseDate());
+//            io.print(dvd.getRating());
+//            io.print(dvd.getDirectors());
+//            io.print(dvd.getStudio());
+//            io.print(dvd.getNote());
+//            io.print("");
+//        } else {
+//            io.print("That DVD doesnt exist.");
+//        }
 
     }
 
@@ -131,6 +138,15 @@ public class DVDController {
         }
         io.readString("Please hit enter to continue.");
     }
+//    private void searchDVD(String title) {
+//
+//        if (getAllDVDNames().contains(title)) {
+//            io.print("we have " + title);
+//        } else {
+//            io.print("We dont have that dvd.");
+//        }
+//        io.readString("Please hit enter to continue.");
+//    }
 
     private void loadDVD() {
         io.print("You will load the collection from the file");
