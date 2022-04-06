@@ -55,15 +55,18 @@ public class DVDController {
                     listCollection();
                     break;
                 case 5:
+                    io.print("Display DVD");
                     displayDVD();
                     break;
                 case 6:
+                    io.print("Search DVD");
                     searchDVD();
                     break;
                 case 7:
                     loadDVD();
                     break;
                 case 8:
+                    io.print("Save DVD");
                     saveDVD();
                     break;
                 case 9:
@@ -86,7 +89,7 @@ public class DVDController {
         String rating = io.readString("Please enter rating");
         String directors = io.readString("Please enter director");
         String studio = io.readString("Please enter studio");
-        String notes = io.readString("Please enter any notes");
+        String comment = io.readString("Please enter a commnet");
 
         DVDObj newDvd = new DVDObj();
 
@@ -95,10 +98,17 @@ public class DVDController {
         newDvd.setRating(rating);
         newDvd.setDirectors(directors);
         newDvd.setStudio(studio);
-        newDvd.setNote(notes);
+        newDvd.setNote(comment);
 
         dao.addDVD(title, newDvd);
     }
+    
+    
+    
+    
+    
+    
+    //methods begin here
 
     private void removeDvd() {
         String title = io.readString("Please enter DVD title");
@@ -115,12 +125,19 @@ public class DVDController {
 
         String title = io.readString("Please enter DVD title");
         DVDObj tempDvd = dao.getDVDAtt(title);
-        io.print("Release Date: " + tempDvd.getReleaseDate());
-        io.print("Rating: " + tempDvd.getRating());
-        io.print("Director: " + tempDvd.getDirectors());
-        io.print("Studio: " + tempDvd.getStudio());
-        io.print("Notes: " + tempDvd.getReleaseDate());
-   
+        
+        if (tempDvd != null) {
+            io.print("");
+            io.print("Title: " + tempDvd.getTitle());
+            io.print("Release Date: " + tempDvd.getReleaseDate());
+            io.print("Rating: " + tempDvd.getRating());
+            io.print("Director: " + tempDvd.getDirectors());
+            io.print("Studio: " + tempDvd.getStudio());
+            io.print("User Notes: " + tempDvd.getNote());
+            io.print("");
+        } else {
+            io.print("That DVD doesnt exist.");
+        }
 
     }
 
@@ -151,7 +168,7 @@ public class DVDController {
     }
 
     private void saveDVD() {
-        io.print("You saved the list to a text file");
+        io.print("You saved the collection to a text file");
         dao.saveLibrary();
         //saveLibrary();
     }
