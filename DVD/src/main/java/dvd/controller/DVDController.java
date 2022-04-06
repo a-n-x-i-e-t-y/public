@@ -105,10 +105,6 @@ public class DVDController {
     }
     
     
-    
-    
-    
-    
     //methods begin here
 
     private void removeDvd() {
