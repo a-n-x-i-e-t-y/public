@@ -61,10 +61,10 @@ public class DVDController {
                     //searchDVD();
                     break;
                 case 7:
-                    //loadDVD();
+                    loadDVD();
                     break;
                 case 8:
-                    //saveDVD();
+                    saveDVD();
                     break;
                 case 9:
                     io.print("PLACEHOLDER");
