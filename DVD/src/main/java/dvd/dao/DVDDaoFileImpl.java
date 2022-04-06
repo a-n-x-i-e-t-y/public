@@ -121,8 +121,13 @@ public class DVDDaoFileImpl implements DVDDao {
 
         try {//to write to file
             FileWriter myWriter = new FileWriter("collection.txt");
-            myWriter.write(DVDObj.getTitle()+"::" + DVDObj.getReleaseDate()+ "::" + DVDObj.getRating()+ "::" 
-                    + DVDObj.getDirectors()+ "::" + DVDObj.getStudio()+ "::" + DVDObj.getNote()););
+            HashMap<String, Object> DVDs = new HashMap<>();
+            for (String i : DVDs.keySet()) { // iterates through keys in hashmap printing a list of the states
+            System.out.println(i);
+            myWriter.write(DVDs.getTitle()+"::" + DVDs.getReleaseDate()+ "::" + DVDs.getRating()+ "::" 
+                   + DVDs.getDirectors()+ "::" + DVDs.getStudio()+ "::" + DVDs.getNote());
+        }
+            
             myWriter.close();
             System.out.println("Successfully wrote to the file.");
         } catch (IOException e) {

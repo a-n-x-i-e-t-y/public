@@ -48,17 +48,16 @@ public class DVDController {
                     io.print("LIST DVD");
                     break;
                 case 5:
-                    
-                    displayDvd();
+                    //displayDvd();
                     break;
                 case 6:
-                    io.print("SEARCH DVD");
+                    //searchDVD();
                     break;
                 case 7:
-                    io.print("LOAD DVD");
+                    //loadDVD();
                     break;
                 case 8:
-                    io.print("SAVE DVD");
+                    //saveDVD();
                     break;
                 case 9:
                     io.print("PLACEHOLDER");
@@ -75,7 +74,7 @@ public class DVDController {
     }
 
     private void displayDVD(DVDObj dvd) {
-        
+
         if (dvd != null) {
             io.print(dvd.getTitle());
             io.print(dvd.getReleaseDate());
@@ -93,7 +92,7 @@ public class DVDController {
     private void searchDVD(String title) {
 
         if (getAllDVDNames().contains(title)) {
-            io.print("we have " + DVDObj.getTitle());
+            io.print("we have " + title);
         } else {
             io.print("We dont have that dvd.");
         }
@@ -101,11 +100,11 @@ public class DVDController {
     }
 
     private void loadDVD() {
-        loadLibrary();
+        //loadLibrary();
     }
 
     private void saveDVD() {
-        saveLibrary();
+        //saveLibrary();
     }
 
 }
