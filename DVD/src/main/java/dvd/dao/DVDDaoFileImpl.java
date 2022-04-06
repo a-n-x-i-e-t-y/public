@@ -74,13 +74,32 @@ public class DVDDaoFileImpl implements DVDDao {
     @Override
     public void loadLibrary() {
         try {
+            
+            File f = new File("collection.txt");
+            
             Scanner sc = new Scanner(new BufferedReader(new FileReader("collection.txt")));//to read from file
 
-            String currentLine = sc.nextLine();
-            String[] storestate = currentLine.split("::", 0);
+            while (sc.hasNextLine()) {
+
+                String currentLine = sc.nextLine();
+                String[] storestate = currentLine.split("::", 0);
+
+                DVDObj tempdvd = new DVDObj();
+                tempdvd.setTitle(storestate[0]);
+                tempdvd.setReleaseDate(storestate[1]);
+                tempdvd.setRating(storestate[2]);
+                tempdvd.setDirectors(storestate[3]);
+                tempdvd.setStudio(storestate[3]);
+                tempdvd.setNote(storestate[4]);
+                
+
+                dvdCollection.put(storestate[0], tempdvd);
+
+                //System.out.println(currentLine);
+            }
 
         } catch (Exception e) {
-
+            System.out.println("YOu got an erreor "+e.getMessage());
         }
     }
 
