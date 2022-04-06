@@ -12,6 +12,8 @@ public class DVDController {
 
     private UserIO io = new UserIOConsoleImpl();
 
+    //Testing push command
+    
     public void run() {
         boolean keepGoing = true;
         int menuSelection = 0;
@@ -46,16 +48,16 @@ public class DVDController {
                     io.print("LIST DVD");
                     break;
                 case 5:
-                    io.print("DISPLAY DVD");
+                    //displayDvd();
                     break;
                 case 6:
-                    io.print("SEARCH DVD");
+                    //searchDVD();
                     break;
                 case 7:
-                    io.print("LOAD DVD");
+                    //loadDVD();
                     break;
                 case 8:
-                    io.print("SAVE DVD");
+                    //saveDVD();
                     break;
                 case 9:
                     io.print("PLACEHOLDER");
@@ -71,37 +73,38 @@ public class DVDController {
         io.print("GOOD BYE");
     }
 
-    private void DisplayDvd(DVDObj dvd) {
+    private void displayDVD(DVDObj dvd) {
+
         if (dvd != null) {
-            io.print(DvDObj.getTitle());
-            io.print(DVDObj.getReleaseDate());
-            io.print(DVDObj.getRating());
-            io.print(DVDObj.getDirectors());
-            io.print(DVDObj.getStudio());
-            io.print(DVDObj.getNote());
+            io.print(dvd.getTitle());
+            io.print(dvd.getReleaseDate());
+            io.print(dvd.getRating());
+            io.print(dvd.getDirectors());
+            io.print(dvd.getStudio());
+            io.print(dvd.getNote());
             io.print("");
         } else {
-            io.print("No such student.");
+            io.print("That DVD doesnt exist.");
         }
 
     }
 
-    private void SearchDvd(String title) {
+    private void searchDVD(String title) {
 
         if (getAllDVDNames().contains(title)) {
-            io.print("we have " + DVDObj.getTitle());
+            io.print("we have " + title);
         } else {
             io.print("We dont have that dvd.");
         }
         io.readString("Please hit enter to continue.");
     }
 
-    private void LoadDvd() {
-        io.print("No such student.");
+    private void loadDVD() {
+        //loadLibrary();
     }
 
-    private void SaveDvd() {
-        io.print("No such student.");
+    private void saveDVD() {
+        //saveLibrary();
     }
 
 }
