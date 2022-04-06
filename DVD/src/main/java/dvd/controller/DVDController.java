@@ -55,15 +55,19 @@ public class DVDController {
                     listCollection();
                     break;
                 case 5:
+                    io.print("Display DVD");
                     displayDVD();
                     break;
                 case 6:
+                    io.print("Search DVD");
                     searchDVD();
                     break;
                 case 7:
+                    io.print("Load DVD");
                     loadDVD();
                     break;
                 case 8:
+                    io.print("Save DVD");
                     saveDVD();
                     break;
                 case 9:
@@ -115,12 +119,13 @@ public class DVDController {
         DVDObj tempDvd = dao.getDVDAtt(title);
         
         if (tempDvd != null) {
-            io.print(tempDvd.getTitle());
-            io.print(tempDvd.getReleaseDate());
-            io.print(tempDvd.getRating());
-            io.print(tempDvd.getDirectors());
-            io.print(tempDvd.getStudio());
-            io.print(tempDvd.getNote());
+            io.print("");
+            io.print("Title: " + tempDvd.getTitle());
+            io.print("Release Date: " + tempDvd.getReleaseDate());
+            io.print("Rating: " + tempDvd.getRating());
+            io.print("Director: " + tempDvd.getDirectors());
+            io.print("Studio: " + tempDvd.getStudio());
+            io.print("User Notes: " + tempDvd.getNote());
             io.print("");
         } else {
             io.print("That DVD doesnt exist.");
