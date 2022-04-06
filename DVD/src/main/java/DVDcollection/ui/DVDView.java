@@ -1,5 +1,7 @@
 package DVDcollection.ui;
 
+import dvd.dto.DVDObj;
+
 
 
 /*
@@ -18,15 +20,15 @@ public class DVDView {
         io.print("4. List all DVDs");
         io.print("5. Display chosen DVD");
         io.print("6. Search for a DVD");
-        io.print("7. Load a DVD");
+        io.print("7. Load a DVD library");
         io.print("8. Save DVD library");
         io.print("9. Edit multiple DVDS");
         io.print("10. Exit");
 
-        return io.readInt("Please select from the above choices."); //1-5
+        return io.readInt("Please select from the above choices.", 1, 10);
     }
-/*
-    public Student getNewStudentInfo() {
+
+    public DVDObj getNewDvdInfo() {
         String studentId = io.readString("Please enter Student ID");
         String firstName = io.readString("Please enter First Name");
         String lastName = io.readString("Please enter Last Name");
@@ -37,7 +39,7 @@ public class DVDView {
         currentStudent.setCohort(cohort);
         return currentStudent;
     }
-
+/*
     public void displayCreateStudentBanner() {
         io.print("=== Create Student ===");
     }

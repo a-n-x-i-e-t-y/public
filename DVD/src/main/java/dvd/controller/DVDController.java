@@ -1,5 +1,6 @@
 package dvd.controller;
 
+import DVDcollection.ui.DVDView;
 import DVDcollection.ui.UserIO;
 import DVDcollection.ui.UserIOConsoleImpl;
 import dvd.dao.DVDDaoFileImpl;
@@ -15,31 +16,14 @@ public class DVDController {
 
     private UserIO io = new UserIOConsoleImpl();
     private DVDDaoFileImpl dao = new DVDDaoFileImpl();
+    private DVDView view = new DVDView(io);
 
-    //Testing push command
-    //This is a second test push
-    //This is the third test push
+    
     public void run() {
         boolean keepGoing = true;
-        int menuSelection = 0;
+        int menuSelection = view.printMenuAndGetSelection();
         while (keepGoing) {
-            //this is a comment 
-            io.print("Main Menu");
-            io.print("1. Add a DVD");
-            io.print("2. Remove a DVD");
-            io.print("3. Edit existing DVD");
-            io.print("4. List all DVDs");
-            io.print("5. Display chosen DVD");
-            io.print("6. Search for a DVD");
-            io.print("7. Load a DVD Library");
-            io.print("8. Save DVD library");
-            io.print("9. Edit multiple DVDS");
-            io.print("10. Exit");
-            io.print("============================");
-
-            menuSelection = io.readInt("Please select from the"
-                    + " above choices.");
-
+            
             switch (menuSelection) {
                 case 1:
                     io.print("ADD DVD");
@@ -168,7 +152,6 @@ public class DVDController {
     private void saveDVD() {
         io.print("You saved the collection to a text file");
         dao.saveLibrary();
-        //saveLibrary();
     }
 
 }
