@@ -69,4 +69,38 @@ public class DVDController {
         }
         io.print("GOOD BYE");
     }
+
+    private void DisplayDvd(DVDObj dvd) {
+        if (dvd != null) {
+            io.print(DvDObj.getTitle());
+            io.print(DVDObj.getReleaseDate());
+            io.print(DVDObj.getRating());
+            io.print(DVDObj.getDirectors());
+            io.print(DVDObj.getStudio());
+            io.print(DVDObj.getNote());
+            io.print("");
+        } else {
+            io.print("No such student.");
+        }
+
+    }
+
+    private void SearchDvd(String title) {
+
+        if (getAllDVDNames().contains(title)) {
+            io.print("we have " + DVDObj.getTitle());
+        } else {
+            io.print("We dont have that dvd.");
+        }
+        io.readString("Please hit enter to continue.");
+    }
+
+    private void LoadDvd() {
+        io.print("No such student.");
+    }
+
+    private void SaveDvd() {
+        io.print("No such student.");
+    }
+
 }
