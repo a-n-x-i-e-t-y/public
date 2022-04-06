@@ -76,6 +76,7 @@ public class DVDDaoFileImpl implements DVDDao {
         try {
             
             File f = new File("collection.txt");
+            if(!f.exists()){System.out.println("File doen't exist"); throw new Exception();}
             
             Scanner sc = new Scanner(new BufferedReader(new FileReader("collection.txt")));//to read from file
 

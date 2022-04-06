@@ -2,6 +2,7 @@ package dvd.controller;
 
 import DVDcollection.ui.UserIO;
 import DVDcollection.ui.UserIOConsoleImpl;
+import dvd.dto.DVDObj;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
