@@ -2,8 +2,6 @@ package DVDcollection.ui;
 
 import dvd.dto.DVDObj;
 
-
-
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Other/File.java to edit this template
@@ -29,17 +27,76 @@ public class DVDView {
     }
 
     public DVDObj getNewDvdInfo() {
-        String studentId = io.readString("Please enter Student ID");
-        String firstName = io.readString("Please enter First Name");
-        String lastName = io.readString("Please enter Last Name");
-        String cohort = io.readString("Please enter Cohort");
-        Student currentStudent = new Student(studentId);
-        currentStudent.setFirstName(firstName);
-        currentStudent.setLastName(lastName);
-        currentStudent.setCohort(cohort);
-        return currentStudent;
+        String title = io.readString("Please enter DVD title");
+        String releaseDate = io.readString("Please enter DVD release date");
+        String rating = io.readString("Please enter rating");
+        String directors = io.readString("Please enter director");
+        String studio = io.readString("Please enter studio");
+        String comment = io.readString("Please enter a commnet");
+
+        DVDObj newDvd = new DVDObj();
+
+        newDvd.setTitle(title);
+        newDvd.setReleaseDate(releaseDate);
+        newDvd.setRating(rating);
+        newDvd.setDirectors(directors);
+        newDvd.setStudio(studio);
+        newDvd.setNote(comment);
+
+        return newDvd;
     }
-/*
+
+    public void displaySelectionBanner(int selection) {
+
+        switch (selection) {
+            case 1 -> io.print("==========Add DVD to Library==========");
+            case 2 -> io.print("========Remove DVD from Library=======");
+            case 3 -> io.print("==========Edit Existing DVD===========");
+            case 4 -> io.print("=======List all DVDs in Library=======");
+            case 5 -> io.print("===========Display DVD Info===========");
+            case 6 -> io.print("========Search for DVD by Title=======");
+            case 7 -> io.print("======Load DVD Library From Disk======");
+            case 8 -> io.print("=====Save Current Library to Disk=====");
+        }
+
+    }
+    public void displaySuccessBanner(int selection) {
+
+        switch (selection) {
+            case 1 -> io.readString("#DVD added to library. Please hit enter to continue#");
+            case 2 -> io.readString("#DVD removed from library. Please hit enter to continue#");
+            case 3 -> io.readString("#DVD info updated. Please hit enter to continue#");
+            case 4 -> io.readString("#DVD collection displayed. Please hit enter to continue#");
+            case 5 -> io.readString("#DVD information displayed. Please hit enter to continue#");
+            case 6 -> io.readString("#Search complete. Please hit enter to continue#");
+            case 7 -> io.readString("#DVD library loaded. Please hit enter to continue#");
+            case 8 -> io.readString("#DVD library saved. Please hit enter to continue#");
+        }
+
+    }
+    
+    public int printEditablesAndGetSelection(){
+        io.print("1. Edit Release Date");
+        io.print("2. Edit Rating");
+        io.print("3. Edit Director(s)");
+        io.print("4. Edit Studio");
+        io.print("5. Edit Notes/Comments");
+        return io.readInt("Please select from the above choices.", 1, 5);
+    }
+
+    public String getTitle(){
+        return io.readString("Please enter the DVD title.");
+    }
+    
+    public String getProperty(){
+        return io.readString("Please enter the updated value.");
+    }
+    
+    public void displayNoDvdError(String title){
+        io.readString("!!!The DVD <" + title + "> does not exist in"
+                + " this library!!! Please hit enter to continue.");
+    }
+    /*
     public void displayCreateStudentBanner() {
         io.print("=== Create Student ===");
     }
@@ -104,7 +161,7 @@ public class DVDView {
     public void displayUnknownCommandBanner() {
         io.print("Unknown Command!!!");
     }
-*/
+     */
     public DVDView(UserIO io) {
         this.io = io;
     }

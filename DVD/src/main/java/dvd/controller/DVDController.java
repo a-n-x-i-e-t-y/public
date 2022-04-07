@@ -17,52 +17,24 @@ public class DVDController {
     private UserIO io = new UserIOConsoleImpl();
     private DVDDaoFileImpl dao = new DVDDaoFileImpl();
     private DVDView view = new DVDView(io);
+    int menuSelection = 0;
 
-    
     public void run() {
         boolean keepGoing = true;
-        int menuSelection = view.printMenuAndGetSelection();
         while (keepGoing) {
-            
+
+            menuSelection = view.printMenuAndGetSelection();
+
             switch (menuSelection) {
-                case 1:
-                    io.print("ADD DVD");
-                    addDvd();
-                    break;
-                case 2:
-                    io.print("REMOVE DVD");
-                    removeDvd();
-                    break;
-                case 3:
-                    io.print("EDIT DVD");
-                    break;
-                case 4:
-                    io.print("LIST DVD");
-                    listCollection();
-                    break;
-                case 5:
-                    io.print("Display DVD");
-                    displayDVD();
-                    break;
-                case 6:
-                    io.print("Search DVD");
-                    searchDVD();
-                    break;
-                case 7:
-                    loadDVD();
-                    break;
-                case 8:
-                    io.print("Save DVD");
-                    saveDVD();
-                    break;
-                case 9:
-                    io.print("PLACEHOLDER");
-                    break;
-                case 10:
-                    keepGoing = false;
-                    break;
-                default:
-                    io.print("UNKNOWN COMMAND");
+                case 1 -> addDvd();
+                case 2 -> removeDvd();
+                case 3 -> editDvd();
+                case 4 -> listCollection();
+                case 5 -> displayDVD();
+                case 6 -> searchDVD();
+                case 7 -> loadDVD();
+                case 8 -> saveDVD();
+                case 9 -> keepGoing = false;
             }
 
         }
@@ -70,44 +42,57 @@ public class DVDController {
     }
 
     private void addDvd() {
-        String title = io.readString("Please enter DVD title");
-        String releaseDate = io.readString("Please enter DVD release date");
-        String rating = io.readString("Please enter rating");
-        String directors = io.readString("Please enter director");
-        String studio = io.readString("Please enter studio");
-        String comment = io.readString("Please enter a commnet");
-
-        DVDObj newDvd = new DVDObj();
-
-        newDvd.setTitle(title);
-        newDvd.setReleaseDate(releaseDate);
-        newDvd.setRating(rating);
-        newDvd.setDirectors(directors);
-        newDvd.setStudio(studio);
-        newDvd.setNote(comment);
-
-        dao.addDVD(title, newDvd);
+        view.displaySelectionBanner(menuSelection);
+        DVDObj newDvd = view.getNewDvdInfo();
+        dao.addDVD(newDvd.getTitle(), newDvd);
+        view.displaySuccessBanner(menuSelection);
     }
-    
-    
-    //methods begin here
 
     private void removeDvd() {
-        String title = io.readString("Please enter DVD title");
+        view.displaySelectionBanner(menuSelection);
+        String title = view.getTitle();
         dao.removeDVD(title);
+        view.displaySuccessBanner(menuSelection);
+    }
+
+    private void editDvd() {
+        view.displaySelectionBanner(menuSelection);
+        String title = view.getTitle();
+        DVDObj tempDvd = dao.getDVDAtt(title);
+
+        if (tempDvd != null) {
+            switch (view.printEditablesAndGetSelection()) {
+                case 1 ->
+                    tempDvd.setReleaseDate(view.getProperty());
+                case 2 ->
+                    tempDvd.setRating(view.getProperty());
+                case 3 ->
+                    tempDvd.setDirectors(view.getProperty());
+                case 4 ->
+                    tempDvd.setStudio(view.getProperty());
+                case 5 ->
+                    tempDvd.setNote(view.getProperty());
+            }
+            view.displaySuccessBanner(menuSelection);
+        } else {
+            view.displayNoDvdError(title);
+        }
+
     }
 
     private void listCollection() {
+        view.displaySelectionBanner(menuSelection);
         List<String> collection = new ArrayList<>();
         collection.addAll(dao.getAllDVDNames());
         System.out.println(collection);
+        view.displaySuccessBanner(menuSelection);
     }
 
     private void displayDVD() {
-
+        view.displaySelectionBanner(menuSelection);
         String title = io.readString("Please enter DVD title");
         DVDObj tempDvd = dao.getDVDAtt(title);
-        
+
         if (tempDvd != null) {
             io.print("");
             io.print("Title: " + tempDvd.getTitle());
@@ -120,38 +105,34 @@ public class DVDController {
         } else {
             io.print("That DVD doesnt exist.");
         }
-
+        view.displaySuccessBanner(menuSelection);
     }
 
     private void searchDVD() {
+        view.displaySelectionBanner(menuSelection);
         String title = io.readString("Please enter DVD title");
-        
+
         if (dao.getAllDVDNames().contains(title)) {
             io.print("we have " + title);
         } else {
             io.print("We dont have that dvd.");
         }
-        io.readString("Please hit enter to continue.");
+        view.displaySuccessBanner(menuSelection);
     }
-//    private void searchDVD(String title) {
-//
-//        if (getAllDVDNames().contains(title)) {
-//            io.print("we have " + title);
-//        } else {
-//            io.print("We dont have that dvd.");
-//        }
-//        io.readString("Please hit enter to continue.");
-//    }
 
     private void loadDVD() {
+        view.displaySelectionBanner(menuSelection);
         io.print("You will load the collection from the file");
         dao.loadLibrary();
-        
+        view.displaySuccessBanner(menuSelection);
+
     }
 
     private void saveDVD() {
+        view.displaySelectionBanner(menuSelection);
         io.print("You saved the collection to a text file");
         dao.saveLibrary();
+        view.displaySuccessBanner(menuSelection);
     }
 
 }
