@@ -65,7 +65,4 @@ public class DVDObj {
         this.note = note;
     }
 
-
-    
-   
 }

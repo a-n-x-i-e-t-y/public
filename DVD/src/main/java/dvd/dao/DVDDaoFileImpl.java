@@ -49,7 +49,6 @@ public class DVDDaoFileImpl implements DVDDao {
 
     @Override
     public Set<String> getAllDVDNames() {
-
         Set<String> dvdtitles = dvdCollection.keySet();
         return dvdtitles;
 
@@ -92,11 +91,9 @@ public class DVDDaoFileImpl implements DVDDao {
                 tempdvd.setDirectors(storestate[3]);
                 tempdvd.setStudio(storestate[3]);
                 tempdvd.setNote(storestate[4]);
-                
 
                 dvdCollection.put(storestate[0], tempdvd);
 
-                //System.out.println(currentLine);
             }
 
         } catch (Exception e) {
@@ -129,7 +126,7 @@ public class DVDDaoFileImpl implements DVDDao {
             System.out.println(i);
             DVDObj tempdvd = dvdCollection.get(i);
             myWriter.write(tempdvd.getTitle()+"::" + tempdvd.getReleaseDate()+ "::" + tempdvd.getRating()+ "::" 
-                   + tempdvd.getDirectors()+ "::" + tempdvd.getStudio()+ "::" + tempdvd.getNote());
+                   + tempdvd.getDirectors()+ "::" + tempdvd.getStudio()+ "::" + tempdvd.getNote() + "\n");
         }
             
             myWriter.close();

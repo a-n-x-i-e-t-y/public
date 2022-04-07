@@ -1,6 +1,8 @@
 package DVDcollection.ui;
 
 import dvd.dto.DVDObj;
+import java.util.ArrayList;
+import java.util.List;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -11,7 +13,7 @@ public class DVDView {
     private UserIO io;
 
     public int printMenuAndGetSelection() {
-        io.print("Main Menu");
+        io.print("=======Main Menu========");
         io.print("1. Add a DVD");
         io.print("2. Remove a DVD");
         io.print("3. Edit existing DVD");
@@ -20,10 +22,9 @@ public class DVDView {
         io.print("6. Search for a DVD");
         io.print("7. Load a DVD library");
         io.print("8. Save DVD library");
-        io.print("9. Edit multiple DVDS");
-        io.print("10. Exit");
+        io.print("9. Exit");
 
-        return io.readInt("Please select from the above choices.", 1, 10);
+        return io.readInt("Please select from the above choices.", 1, 9);
     }
 
     public DVDObj getNewDvdInfo() {
@@ -87,6 +88,9 @@ public class DVDView {
     public String getTitle(){
         return io.readString("Please enter the DVD title.");
     }
+    public String getQuery(){
+        return io.readString("Please enter your DVD title search.");
+    }
     
     public String getProperty(){
         return io.readString("Please enter the updated value.");
@@ -96,72 +100,47 @@ public class DVDView {
         io.readString("!!!The DVD <" + title + "> does not exist in"
                 + " this library!!! Please hit enter to continue.");
     }
-    /*
-    public void displayCreateStudentBanner() {
-        io.print("=== Create Student ===");
-    }
-
-    public void displayCreateSuccessBanner() {
-        io.readString(
-                "Student successfully created.  Please hit enter to continue");
-    }
-
-    public void displayStudentList(List<Student> studentList) {
-        for (Student currentStudent : studentList) {
-            String studentInfo = String.format("#%s : %s %s",
-                    currentStudent.getStudentId(),
-                    currentStudent.getFirstName(),
-                    currentStudent.getLastName());
-            io.print(studentInfo);
-        }
-        io.readString("Please hit enter to continue.");
-    }
-
-    public void displayDisplayAllBanner() {
-        io.print("=== Display All Students ===");
-    }
-
-    public void displayDisplayStudentBanner() {
-        io.print("=== Display Student ===");
-    }
-
-    public String getStudentIdChoice() {
-        return io.readString("Please enter the Student ID.");
-    }
-
-    public void displayStudent(Student student) {
-        if (student != null) {
-            io.print(student.getStudentId());
-            io.print(student.getFirstName() + " " + student.getLastName());
-            io.print(student.getCohort());
+    
+    public void displayDvdInfo(DVDObj dvd){
             io.print("");
-        } else {
-            io.print("No such student.");
+            io.print("Title         : " + dvd.getTitle());
+            io.print("Release Date  : " + dvd.getReleaseDate());
+            io.print("Rating        : " + dvd.getRating());
+            io.print("Director      : " + dvd.getDirectors());
+            io.print("Studio        : " + dvd.getStudio());
+            io.print("User Notes    : " + dvd.getNote());
+            io.print("");
+    }
+    
+    public void displaySearchResults(List<String> names, String search){
+        List<String> searchResults = new ArrayList<>();
+        for (String name : names){
+            if (name.contains(search)){
+                searchResults.add(name);
+            }
         }
-        io.readString("Please hit enter to continue.");
-    }
+        
+        if (searchResults.isEmpty()){
 
-    public void displayRemoveStudentBanner() {
-        io.print("=== Remove Student ===");
-    }
-
-    public void displayRemoveResult(Student studentRecord) {
-        if (studentRecord != null) {
-            io.print("Student successfully removed.");
-        } else {
-            io.print("No such student.");
+            io.print("\nNo results for <" + search + "> found.");
         }
-        io.readString("Please hit enter to continue.");
+        else{
+            io.print("\nHere are the results matching your query <" + search +">:");
+            for (String result : searchResults) io.print("-" + result);
+        }
+        io.print("");
     }
-
+    
+    public void displayDvdList(List<String> dvdTitles) {
+        for (String title : dvdTitles) {
+            io.print("-" + title);
+        }
+    }
+    
     public void displayExitBanner() {
         io.print("Good Bye!!!");
     }
-
-    public void displayUnknownCommandBanner() {
-        io.print("Unknown Command!!!");
-    }
-     */
+    
     public DVDView(UserIO io) {
         this.io = io;
     }

@@ -5,7 +5,12 @@
 
 package dvd;
 
+import DVDcollection.ui.DVDView;
+import DVDcollection.ui.UserIO;
+import DVDcollection.ui.UserIOConsoleImpl;
 import dvd.controller.DVDController;
+import dvd.dao.DVDDao;
+import dvd.dao.DVDDaoFileImpl;
 
 /**
  *
@@ -14,7 +19,10 @@ import dvd.controller.DVDController;
 public class App {
 
     public static void main(String[] args) {
-        DVDController controller = new DVDController();
+        UserIO myIo = new UserIOConsoleImpl();
+        DVDView myView = new DVDView(myIo);
+        DVDDao myDao = new DVDDaoFileImpl();
+        DVDController controller = new DVDController(myDao, myView);
         controller.run();
     }   
 }
