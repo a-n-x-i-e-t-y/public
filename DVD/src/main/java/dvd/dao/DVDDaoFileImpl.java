@@ -109,6 +109,8 @@ public class DVDDaoFileImpl implements DVDDao {
         }
     }
 
+    //creates a file if it does not exist. otherwise populates a string with object parameters and
+    //saves it to a file line by line.
     @Override
     public void saveLibrary() {
 

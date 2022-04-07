@@ -12,7 +12,7 @@ public class DVDView {
 
     private UserIO io;
 
-    public int printMenuAndGetSelection() {
+    public int printMenuAndGetSelection() { //prints menu
         io.print("=======Main Menu========");
         io.print("1. Add a DVD");
         io.print("2. Remove a DVD");
@@ -24,10 +24,11 @@ public class DVDView {
         io.print("8. Save DVD library");
         io.print("9. Exit");
 
-        return io.readInt("Please select from the above choices.", 1, 9);
+        return io.readInt("Please select from the above choices.", 1, 9); //takes in user input
     }
 
-    public DVDObj getNewDvdInfo() {
+    //takes in user parameters and creates objects
+    public DVDObj getNewDvdInfo() { 
         String title = io.readString("Please enter DVD title");
         String releaseDate = io.readString("Please enter DVD release date");
         String rating = io.readString("Please enter rating");
@@ -46,8 +47,8 @@ public class DVDView {
 
         return newDvd;
     }
-
-    public void displaySelectionBanner(int selection) {
+        
+    public void displaySelectionBanner(int selection) { //formatting print statements. tells the user what they chose
 
         switch (selection) {
             case 1 -> io.print("==========Add DVD to Library==========");
@@ -61,7 +62,7 @@ public class DVDView {
         }
 
     }
-    public void displaySuccessBanner(int selection) {
+    public void displaySuccessBanner(int selection) { //print statement telling the user when a task has been completed. prompts return to main menu.
 
         switch (selection) {
             case 1 -> io.readString("#DVD added to library. Please hit enter to continue#");
@@ -76,7 +77,7 @@ public class DVDView {
 
     }
     
-    public int printEditablesAndGetSelection(){
+    public int printEditablesAndGetSelection(){ //user prompt for editing a dvd
         io.print("1. Edit Release Date");
         io.print("2. Edit Rating");
         io.print("3. Edit Director(s)");
@@ -96,12 +97,12 @@ public class DVDView {
         return io.readString("Please enter the updated value.");
     }
     
-    public void displayNoDvdError(String title){
+    public void displayNoDvdError(String title){ //search did not return user input. prompt to return to main menu
         io.readString("!!!The DVD <" + title + "> does not exist in"
                 + " this library!!! Please hit enter to continue.");
     }
     
-    public void displayDvdInfo(DVDObj dvd){
+    public void displayDvdInfo(DVDObj dvd){ //formatting
             io.print("");
             io.print("Title         : " + dvd.getTitle());
             io.print("Release Date  : " + dvd.getReleaseDate());

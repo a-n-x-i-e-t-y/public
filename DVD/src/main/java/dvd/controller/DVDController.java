@@ -76,7 +76,7 @@ public class DVDController {
         dao.removeDVD(title);
         view.displaySuccessBanner(menuSelection);
     }
-
+    //takes an existing object. sets a parameter and creates a new dvd.
     private void editDvd() {
         view.displaySelectionBanner(menuSelection);
         String title = view.getTitle();
@@ -98,14 +98,14 @@ public class DVDController {
         }
 
     }
-
+    //creates a list of existing dvds
     private void displayCollectionList() {
         view.displaySelectionBanner(menuSelection);
         List<String> collection = new ArrayList<>(dao.getAllDVDNames());
         view.displayDvdList(collection);
         view.displaySuccessBanner(menuSelection);
     }
-
+    //checks for a specific title from the list of existing dvds and returns the parameters of the object.
     private void displayDVD() {
         view.displaySelectionBanner(menuSelection);
         String title = view.getTitle();
@@ -118,7 +118,7 @@ public class DVDController {
             view.displayNoDvdError(title);
         }
     }
-
+        //checks for a specific title from the list of existing dvds and returns a statement on if it exists.
     private void searchDVD() {
         view.displaySelectionBanner(menuSelection);
         String search = view.getQuery();
@@ -126,14 +126,14 @@ public class DVDController {
         view.displaySearchResults(names, search);
         view.displaySuccessBanner(menuSelection);
     }
-
+    // reads and creates objects from text file.
     private void loadDVD() {
         view.displaySelectionBanner(menuSelection);
         dao.loadLibrary();
         view.displaySuccessBanner(menuSelection);
 
     }
-
+    //stores existing objects from dao into a txt file
     private void saveDVD() {
         view.displaySelectionBanner(menuSelection);
         dao.saveLibrary();
