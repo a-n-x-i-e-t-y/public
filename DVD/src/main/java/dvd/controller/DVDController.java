@@ -14,20 +14,30 @@ import java.util.List;
  */
 public class DVDController {
 
+    //Create references for the DAO and the View which will be set
+    //by the constructor. Allows for dependency injection.
     private DVDDao dao;
     private DVDView view;
+    
+    //Menu selection variable set by the input from the view which governs
+    //the main menu selection and the corresponding banners to be displayed by 
+    //the view called by the controller.
     int menuSelection = 0;
 
+    //Inject dao and view dependencies
     public DVDController(DVDDao dao, DVDView view) {
         this.dao = dao;
         this.view = view;
     }
 
-    
+    //Application entry point. This loop calls the controller functions depending
+    //on what user input is received from the view. The view handles correct input.
     public void run() {
         boolean keepGoing = true;
         while (keepGoing) {
 
+            //Update menu choice 1-9 from user input from the view and 
+            //call the view to display the choice menu.
             menuSelection = view.printMenuAndGetSelection();
 
             switch (menuSelection) {
@@ -44,9 +54,14 @@ public class DVDController {
 
         }
         
+        //Loop broken. Program ends.
         view.displayExitBanner();
     }
 
+    
+    /*----------------------------Controller Methods--------------------------*/
+   
+    //Passes a DVDObj to the dao created from the input recieved from the view.
     private void addDvd() {
         view.displaySelectionBanner(menuSelection);
         DVDObj newDvd = view.getNewDvdInfo();
@@ -54,6 +69,7 @@ public class DVDController {
         view.displaySuccessBanner(menuSelection);
     }
 
+    //Removes a DVD from the collection based on the name of dvd if it exists;
     private void removeDvd() {
         view.displaySelectionBanner(menuSelection);
         String title = view.getTitle();
@@ -74,6 +90,8 @@ public class DVDController {
                 case 4 -> tempDvd.setStudio(view.getProperty());
                 case 5 -> tempDvd.setNote(view.getProperty());
             }
+            
+            dao.addDVD(title, tempDvd);
             view.displaySuccessBanner(menuSelection);
         } else {
             view.displayNoDvdError(title);

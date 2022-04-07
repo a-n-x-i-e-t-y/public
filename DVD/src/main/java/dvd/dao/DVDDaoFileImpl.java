@@ -73,31 +73,39 @@ public class DVDDaoFileImpl implements DVDDao {
     @Override
     public void loadLibrary() {
         try {
-            
+
             File f = new File("collection.txt");
-            if(!f.exists()){System.out.println("File doen't exist"); throw new Exception();}
-            
+            if (!f.exists()) {
+                System.out.println("File doesn't exist");
+                throw new Exception();
+            }
+
             Scanner sc = new Scanner(new BufferedReader(new FileReader("collection.txt")));//to read from file
 
             while (sc.hasNextLine()) {
 
                 String currentLine = sc.nextLine();
-                String[] storestate = currentLine.split("::", 0);
+                String[] storeState = currentLine.split("::", 0);
 
+                //Revert any empty strings which may have been stored as spaces
+                for (String value : storeState){
+                    value = revertEmptyValue(value);
+                }
+                
                 DVDObj tempdvd = new DVDObj();
-                tempdvd.setTitle(storestate[0]);
-                tempdvd.setReleaseDate(storestate[1]);
-                tempdvd.setRating(storestate[2]);
-                tempdvd.setDirectors(storestate[3]);
-                tempdvd.setStudio(storestate[3]);
-                tempdvd.setNote(storestate[4]);
+                tempdvd.setTitle(storeState[0]);
+                tempdvd.setReleaseDate(storeState[1]);
+                tempdvd.setRating(storeState[2]);
+                tempdvd.setDirectors(storeState[3]);
+                tempdvd.setStudio(storeState[4]);
+                tempdvd.setNote(storeState[5]);
 
-                dvdCollection.put(storestate[0], tempdvd);
+                dvdCollection.put(storeState[0], tempdvd);
 
             }
 
         } catch (Exception e) {
-            System.out.println("YOu got an erreor "+e.getMessage());
+            System.out.println("YOu got an erreor " + e.getMessage());
         }
     }
 
@@ -116,27 +124,51 @@ public class DVDDaoFileImpl implements DVDDao {
             e.printStackTrace();
         }
 
-        
         try {//to write to file
             FileWriter myWriter = new FileWriter("collection.txt");
-            
-            Set<String> keys = dvdCollection.keySet();
-            
-            for (String i : keys) { // iterates through keys in hashmap
-            System.out.println(i);
-            DVDObj tempdvd = dvdCollection.get(i);
-            myWriter.write(tempdvd.getTitle()+"::" + tempdvd.getReleaseDate()+ "::" + tempdvd.getRating()+ "::" 
-                   + tempdvd.getDirectors()+ "::" + tempdvd.getStudio()+ "::" + tempdvd.getNote() + "\n");
-        }
-            
+
+
+            for (Map.Entry<String, DVDObj> entry : dvdCollection.entrySet()) { // iterates through keys in hashmap
+                DVDObj tempdvd = entry.getValue();
+                myWriter.write(tempdvd.getTitle() + "::" 
+                        + correctEmptyString(tempdvd.getReleaseDate()) + "::" 
+                        + correctEmptyString(tempdvd.getRating()) + "::" 
+                        + correctEmptyString(tempdvd.getDirectors()) + "::" 
+                        + correctEmptyString(tempdvd.getStudio()) + "::" 
+                        + correctEmptyString(tempdvd.getNote()) + "\n");
+            }
+
             myWriter.close();
             System.out.println("Successfully wrote to the file.");
         } catch (IOException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
-        
- 
+
+    }
+
+    /**
+     * Small function to check if a string (particularly an object value)
+     * is empty. If the string is empty, it returns a single space to correct to prevent
+     * empty strings from being written to a file which can corrupt delimitation.
+     */
+    public String correctEmptyString(String checkString) {
+        if (checkString.equals("")) {
+            return " ";
+        }
+        return checkString;
+    }
+    
+    /**
+     * Returns any single space values to their original empty string value
+     * Primarily used when loading data from a file in which a object value
+     * was adjusted to a single space to preserve delimitation.
+     */
+    public String revertEmptyValue(String checkString) {
+        if (checkString.equals(" ")) {
+            return "";
+        }
+        return checkString;
     }
 
 }
